@@ -413,6 +413,29 @@ static perm_t tokenMatch[] = {
 	{ 0, nullptr } };
 
 // --------------------------------------------------------------------------------
+
+// From km\wdm.h:
+// Object Manager Directory Specific Access Rights.
+
+#define DIRECTORY_QUERY                 (0x0001)
+#define DIRECTORY_TRAVERSE              (0x0002)
+#define DIRECTORY_CREATE_OBJECT         (0x0004)
+#define DIRECTORY_CREATE_SUBDIRECTORY   (0x0008)
+
+#define DIRECTORY_ALL_ACCESS (STANDARD_RIGHTS_REQUIRED | 0xF)
+
+static perm_t objMgrDirectorySpecific[] = {
+	{ DIRECTORY_QUERY, L"DIRECTORY_QUERY" },
+	{ DIRECTORY_TRAVERSE, L"DIRECTORY_TRAVERSE" },
+	{ DIRECTORY_CREATE_OBJECT, L"DIRECTORY_CREATE_OBJECT" },
+	{ DIRECTORY_CREATE_SUBDIRECTORY, L"DIRECTORY_CREATE_SUBDIRECTORY" },
+	{ 0, nullptr } };
+
+static perm_t objMgrDirectoryMatch[] = {
+	{ DIRECTORY_ALL_ACCESS, L"DIRECTORY_ALL_ACCESS" },
+	{ 0, nullptr } };
+
+// --------------------------------------------------------------------------------
 // The ADS_RIGHT_x values are defined as enums rather than as manifest constant #define values,
 // and implicit conversion to DWORD triggers some level-4 warnings that need to be disabled temporarily.
 // Examples of those warnings:
@@ -551,6 +574,12 @@ static bool GetPermsForType(const wchar_t* szObjType, perm_t*& pPermsSpecific, p
 	{
 		pPermsSpecific = tokenSpecific;
 		pPermsMatch = tokenMatch;
+	}
+	else
+	if (0 == _wcsicmp(szObjType, L"objdir"))
+	{
+		pPermsSpecific = objMgrDirectorySpecific;
+		pPermsMatch = objMgrDirectoryMatch;
 	}
 	else
 	if (0 == _wcsicmp(szObjType, L"ntds"))

@@ -47,6 +47,7 @@ With "-rights", "objType" is one or more of these:
     section   Mapping of section permission constants to defined SDDL codes
     filemap   Mapping of file mapping permission constants to defined SDDL codes
     token     Mapping of token permission constants to defined SDDL codes
+    objdir    Mapping of object manager directory permission constants to defined SDDL codes
     standard  Mapping of standard and generic permission constants to defined SDDL codes
   Examples:
     SddlHelp.exe -rights key

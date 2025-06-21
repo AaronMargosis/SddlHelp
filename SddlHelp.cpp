@@ -40,6 +40,7 @@ opts_t options[] = {
 	{ L"section" , L"Mapping of section permission constants to defined SDDL codes" },
 	{ L"filemap" , L"Mapping of file mapping permission constants to defined SDDL codes" },
 	{ L"token" ,   L"Mapping of token permission constants to defined SDDL codes" },
+	{ L"objdir" ,  L"Mapping of object manager directory permission constants to defined SDDL codes" },
 	{ L"standard", L"Mapping of standard and generic permission constants to defined SDDL codes" },
 	{ nullptr, nullptr }
 };
@@ -167,31 +168,32 @@ TODO: more object rights that this tool could cover
 
 x_ALL_ACCESS -- look these up and find the other rights associated with the same objects:
 
-	// synchronization objects
+	// synchronization objects (winnt.h)
 	EVENT_ALL_ACCESS,
 	MUTANT_ALL_ACCESS,
 	SEMAPHORE_ALL_ACCESS,
 	TIMER_ALL_ACCESS,
-	//
+	// other winnt.h:
 	IO_COMPLETION_ALL_ACCESS,
 	JOB_OBJECT_ALL_ACCESS,
 	MEMORY_PARTITION_ALL_ACCESS,
 	SESSION_ALL_ACCESS,
-	// kernel transaction manager:
+	// kernel transaction manager (winnt.h):
 	ENLISTMENT_ALL_ACCESS,
 	RESOURCEMANAGER_ALL_ACCESS,
 	TRANSACTION_ALL_ACCESS,
 	TRANSACTIONMANAGER_ALL_ACCESS,
-	//
+	// ClusApi.h:
 	CLUSAPI_ALL_ACCESS,
+	// WinFax.h
 	FAX_ALL_ACCESS,
-	// spooler
+	// spooler (winspool.h)
 	JOB_ALL_ACCESS,
 	PRINTER_ALL_ACCESS,
 	SERVER_ALL_ACCESS,
-	// for WTSCreateListener
+	// for WTSCreateListener (WtsApi32.h)
 	WTS_SECURITY_ALL_ACCESS,
-	// LSA
+	// LSA (ntlsa.h)
 	ACCOUNT_ALL_ACCESS,
 	POLICY_ALL_ACCESS,
 	SECRET_ALL_ACCESS,
